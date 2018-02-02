@@ -64,7 +64,7 @@ class Ressource(models.Model):
     confidentiel = models.BooleanField(verbose_name="Cliquer si les informations de contact sont confidentielles")
     nompersress = models.CharField(max_length=250, verbose_name="Nom de la personne ressource", blank=True, null=True)
     adresse = models.CharField(max_length=250, verbose_name="Adresse", blank=True, null=True)
-    author = models.ForeignKey(User, related_name='AssistantRessource',blank=True, null=True)
+    author = models.ForeignKey(User, related_name='AssistantRessource',blank=True, null=True, on_delete=models.DO_NOTHING)
     posted = models.DateTimeField(db_index=True, auto_now_add=True)
     region = models.CharField(max_length=250, blank=True, null=True,verbose_name="Province, région, ville ...")
     popcible = models.CharField(max_length=250, verbose_name="Population cible", blank=True, null=True)
@@ -80,8 +80,8 @@ class Ressource(models.Model):
 class Document(models.Model):
     docfile = models.FileField(upload_to='DocsRessources', verbose_name="Documentation utile", blank=True, null=True)
     description = models.CharField(max_length=100, verbose_name="Brève description", blank=True, null=True, help_text="Nom explicite et court du fichier (par exemple rapport annuel)")
-    ressource = models.ForeignKey(Ressource)
-    author = models.ForeignKey(User, related_name='AssistantDocument', blank=True, null=True)
+    ressource = models.ForeignKey(Ressource, on_delete=models.DO_NOTHING)
+    author = models.ForeignKey(User, related_name='AssistantDocument', blank=True, null=True, on_delete=models.DO_NOTHING)
     posted = models.DateTimeField(auto_now_add=True)
 
 
