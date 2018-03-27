@@ -1,0 +1,26 @@
+{% load static %}
+{% load i18n %}
+<html>
+    <head>
+        <title>Bottin des ressources et des programmes</title>
+        <link rel="stylesheet" type="text/css" href="/static/admin/css/base.css" />
+   </head>
+    <body>
+        <div class="container">
+        <h2>Liste des ressources</h2>
+              <table>
+                <tr class="row2"><th width="400">Titre</th>
+                    <th>Nom de la ressource</th><th>Extraction Pdf</th></tr>
+                {% for ressource in ressources %}
+                    <tr class="{% cycle 'row1' 'row2' %}">
+                        <td>{{ ressource.nom }}</td><
+                        <td><a href="{% url 'bsome_pdf' ressource.id %}" class= 'button'>{% trans "Générer le pdf" %}</a></td>
+                    </tr>
+                {% endfor  %}
+            </table>
+
+            <!--<p><a href="{% url 'fait_csv' %}" class= 'button'>{% trans "Exporter tout en csv" %}</a></p>-->
+
+        </div>
+   </body>
+</html>
