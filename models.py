@@ -67,7 +67,7 @@ class Ressource(models.Model):
     author = models.ForeignKey(User, related_name='AssistantRessource',blank=True, null=True, on_delete=models.DO_NOTHING)
     posted = models.DateTimeField(db_index=True, auto_now_add=True)
     region = models.CharField(max_length=250, blank=True, null=True,verbose_name="Province, région, ville ...")
-    popcible = models.CharField(max_length=250, verbose_name="Population cible", blank=True, null=True)
+    popcible = models.TextField(verbose_name="Population cible", blank=True, null=True)
     testdeplus = models.CharField(max_length=250, blank=True, null=True)
 
     def __str__(self):
