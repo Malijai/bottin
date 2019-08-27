@@ -1,14 +1,13 @@
 # -*- coding: utf-8 -*-
-
 from django.contrib import admin
-
 from .models import Ressource, Document,Interception,Secteur,Programme
 
 
 #class DocumentInline(admin.StackedInline):
 class DocumentInline(admin.TabularInline):
     model = Document
-
+    verbose_name = "Documents - ATTENTION PAS D'ACCENT DANS LE NOM DU FICHIER"
+    verbose_name_plural = "Documents - ATTENTION PAS D'ACCENT DANS LE NOM DU FICHIER"
     fields = ['docfile','description']
 
 
@@ -27,8 +26,10 @@ class RessourceAdmin(admin.ModelAdmin):
 
     list_filter = ['domaine',]
 
+
 def save_model(self, request, obj, form, change):
         obj.save()
+
 
 admin.site.register(Ressource, RessourceAdmin)
 admin.site.register(Secteur)

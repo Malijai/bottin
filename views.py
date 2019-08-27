@@ -4,7 +4,6 @@ from django.http import HttpResponse, StreamingHttpResponse
 from reportlab.pdfgen import canvas
 from .models import Ressource
 from django.core.files.storage import FileSystemStorage
-
 from reportlab.platypus import SimpleDocTemplate, Paragraph, Spacer, PageBreak
 from reportlab.lib.styles import getSampleStyleSheet
 from reportlab.rl_config import defaultPageSize
@@ -63,7 +62,8 @@ def some_pdf(request, pk):
 
     f = Ressource._meta.get_field('siteweb')
     bogustext = "<b>" + f.verbose_name + " : </b>"
-    bogustext += ressource.siteweb
+    if ressource.siteweb:
+        bogustext += ressource.siteweb
     p = Paragraph(bogustext, style, bulletText="\x80")
     Story.append(p)
 
@@ -78,7 +78,8 @@ def some_pdf(request, pk):
 
     f =Ressource._meta.get_field('popcible')
     bogustext = "<b>" + f.verbose_name + " : </b>"
-    bogustext += ressource.popcible
+    if ressource.popcible:
+        bogustext += ressource.popcible
     p = Paragraph(bogustext, style)
     Story.append(p)
     Story.append(Spacer(1, 0.1 * inch))
@@ -92,25 +93,29 @@ def some_pdf(request, pk):
 
     f = Ressource._meta.get_field('nompersress')
     bogustext = "<b>" + f.verbose_name + " : </b>"
-    bogustext += ressource.nompersress
+    if ressource.nompersress:
+        bogustext += ressource.nompersress
     p = Paragraph(bogustext, style)
     Story.append(p)
 
     f = Ressource._meta.get_field('adresse')
     bogustext = "<b>" + f.verbose_name + " : </b>"
-    bogustext += ressource.adresse
+    if ressource.adresse:
+        bogustext += ressource.adresse
     p = Paragraph(bogustext, style)
     Story.append(p)
 
     f = Ressource._meta.get_field('courriel')
     bogustext = "<b>" + f.verbose_name + " : </b>"
-    bogustext += ressource.courriel
+    if ressource.courriel:
+        bogustext += ressource.courriel
     p = Paragraph(bogustext, style)
     Story.append(p)
 
     f = Ressource._meta.get_field('telephone')
     bogustext = "<b>" + f.verbose_name + " : </b>"
-    bogustext += ressource.telephone
+    if ressource.telephone:
+        bogustext += ressource.telephone
     p = Paragraph(bogustext, style)
     Story.append(p)
 

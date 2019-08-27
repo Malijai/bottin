@@ -78,7 +78,7 @@ class Ressource(models.Model):
 
 
 class Document(models.Model):
-    docfile = models.FileField(upload_to='DocsRessources', verbose_name="Documentation utile", blank=True, null=True)
+    docfile = models.FileField(upload_to='DocsRessources', verbose_name="Documentation utile", help_text="ATTENTION PAS D'ACCENT DANS LE NOM DU FICHIER", blank=True, null=True)
     description = models.CharField(max_length=100, verbose_name="Brève description", blank=True, null=True, help_text="Nom explicite et court du fichier (par exemple rapport annuel)")
     ressource = models.ForeignKey(Ressource, on_delete=models.DO_NOTHING)
     author = models.ForeignKey(User, related_name='AssistantDocument', blank=True, null=True, on_delete=models.DO_NOTHING)

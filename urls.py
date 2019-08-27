@@ -1,9 +1,12 @@
-from django.conf.urls import url
-from .views import some_pdf, extractionb
+from django.urls import path
+from . import views
 
 
 urlpatterns = [
-    url(r'^pdf/(?P<pk>[-\w]+)/$', some_pdf, name='bsome_pdf'),
-    url(r'listeb.html', extractionb, name='listeressources'),
+    path('pdf/<int:pk>/',views.some_pdf, name='bsome_pdf'),
+    path('listeb.html', views.extractionb, name='listeressources'),
 ]
+
+
+
 
